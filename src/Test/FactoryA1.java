@@ -4,9 +4,10 @@
  * and open the template in the editor.
  */
 
-package ServiceLocator;
+package Test;
 
-import Base.*;
+import ServiceLocator.*;
+
 
 /**
  *

@@ -15,7 +15,7 @@ import java.util.Map;
 
 public class SimpleServiceLocator implements ServiceLocator {
 
-    private Factory factory;
+    //private Factory factory;
     private final Map<String, Object> names;
     
     public SimpleServiceLocator () {

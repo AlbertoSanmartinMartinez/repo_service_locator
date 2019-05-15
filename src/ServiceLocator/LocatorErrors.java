@@ -10,5 +10,6 @@ package ServiceLocator;
  * @author albertosanmartinmartinez
  */
 public class LocatorErrors extends Exception {
-    
+
+
 }

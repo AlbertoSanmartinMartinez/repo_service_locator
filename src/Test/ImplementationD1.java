@@ -3,19 +3,17 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Base;
+package Test;
 
 /**
  *
  * @author albertosanmartinmartinez
  */
-public class ImplementationA1 implements InterfaceA {
+public class ImplementationD1 implements InterfaceD {
     
-    private InterfaceB b;
-    private InterfaceC c;
+    private int i;
     
-    public ImplementationA1 (InterfaceB b, InterfaceC c) {
-        this.b = b;
-        this.c = c;
+    public ImplementationD1 (int i) {
+        this.i = i;
     }
 }
