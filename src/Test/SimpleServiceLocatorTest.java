@@ -31,8 +31,8 @@ public class SimpleServiceLocatorTest {
 
         service.setService("A",fa1);
         service.setConstant("B",s);
-        service.setConstant("C",b1);
-        service.setConstant("S",s1);
+        service.setConstant("C",b);
+        service.setConstant("S",s);
 
         Object ob=service.getObject("A");
         System.out.println(ob.toString());
