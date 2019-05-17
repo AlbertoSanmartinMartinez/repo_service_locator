@@ -55,9 +55,9 @@ public class SimpleServiceLocator implements ServiceLocator {
                 return f.create(this);
             }
         
-            else if (names.get(name) instanceof Object){
+
                 return names.get(name);
-            }
+
         }
         throw new LocatorErrors();
     }

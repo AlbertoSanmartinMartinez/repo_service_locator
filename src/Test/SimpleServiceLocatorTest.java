@@ -5,37 +5,43 @@ import ServiceLocator.*;
 import static org.junit.Assert.*;
 
 public class SimpleServiceLocatorTest {
-    private SimpleServiceLocator service = new SimpleServiceLocator();
-    private static Factory fa1;
-    private static Factory fb1;
-    private static Factory fc1;
-    private static Factory fd1;
 
-    private InterfaceC c =null;
-    private InterfaceB b =null;
-    private InterfaceD d =null;
+    private SimpleServiceLocator service = new SimpleServiceLocator();
+
+    private static Factory fa1=new FactoryA1();
+    private static Factory fb1= new FactoryB1();
+    private static Factory fc1 = new FactoryC1();
+    private static Factory fd1= new FactoryD1();
+
+    private InterfaceC c;
+    private InterfaceB b;
+    private InterfaceD d;
     private String s = "Hola";
     private int i = 3;
 
-    private final ImplementationA1 ia1= new ImplementationA1(b,c);
-    private final ImplementationB1 ib1= new ImplementationB1(d);
-    private final ImplementationC1 ic1= new ImplementationC1(s);
-    private final ImplementationD1 id1 = new ImplementationD1(i);
 
     @Test
-    public void checkSetServiceMethods() throws LocatorErrors
+    public void checkSimpleServiceLocatorMethods() throws LocatorErrors
     {
 
-
-        fa1 = new FactoryA1();
-
-        service.setService("A",fa1);
-        service.setConstant("B",s);
-        service.setConstant("C",b);
+        service.setService("FA",fa1);
+        service.setService("FB",fb1);
+        service.setService("FC",fc1);
+        service.setService("FD",fd1);
+        service.setConstant("B",b);
+        service.setConstant("C",c);
+        service.setConstant("D",d);
         service.setConstant("S",s);
+        service.setConstant("I",i);
 
-        Object ob=service.getObject("A");
-        System.out.println(ob.toString());
+
+        assertTrue(service.getObject("FA") instanceof ImplementationA1);
+        assertTrue(service.getObject("FB") instanceof ImplementationB1);
+        assertTrue(service.getObject("FC") instanceof ImplementationC1);
+        assertTrue(service.getObject("FD") instanceof ImplementationD1);
+
     }
+
+
 
 }

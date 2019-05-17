@@ -10,7 +10,7 @@ public class FactoryD1 implements Factory {
     public InterfaceD create(ServiceLocator s1) throws LocatorErrors {
 
         try {
-            int i = (int) s1.getObject("D");
+            int i = (int) s1.getObject("I");
             return new ImplementationD1(i);
         } catch (ClassCastException ex) {
             throw new LocatorErrors();
