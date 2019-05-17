@@ -14,15 +14,15 @@ public interface ServiceLocator {
     /*
     Instala una factoria dandole un nombre y lanza la excepcion si el nombre ya esta registrado
     */
-    void setService(String name, Factory factory) throws LocatorErrors;
+    <T> void setService(Class<T> name, Factory<T> factory) throws LocatorErrors;
     
     /*
     
     */
-    void setConstant(String name, Object object) throws LocatorErrors;
+    <T> void setConstant(Class<T> name, T object) throws LocatorErrors;
     
     /*
     
     */
-    Object getObject(String name) throws LocatorErrors;
+    <T> T getObject(Class<T> name) throws LocatorErrors;
 }
