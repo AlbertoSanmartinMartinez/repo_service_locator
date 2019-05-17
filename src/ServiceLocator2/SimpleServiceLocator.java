@@ -2,13 +2,13 @@ package ServiceLocator2;
 import java.util.HashMap;
 import java.util.Map;
 
-public class SimpleServiceLocator2 implements ServiceLocator {
+public class SimpleServiceLocator implements ServiceLocator {
 
 
 
     private final  Map<String, ? super Object> gservice;
 
-    public SimpleServiceLocator2 (){
+    public SimpleServiceLocator(){
 
         this.gservice=new HashMap<>();
     }

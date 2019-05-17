@@ -48,6 +48,14 @@ public class CachedServiceLocator implements ServiceLocator {
     public Object getObject(String name) throws LocatorErrors {
 
         if (cnames.containsKey(name)) {
+            if(cnames.get(name) instanceof Factory){ // If the value associated to the key is a factory
+
+                Factory f= (Factory) cnames.get(name); //Take the factory from HashMap
+                Object ob = f.create(this);            //We want to return always the same object so we creat the object associated with the factory
+
+                cnames.put(name,ob);                    //Rewrite the value of the associated key, if not, factory will creat different objects each time we call the create function
+                return ob;                              //Know we return the object and we'll always return the same object for that name
+            }
             return cnames.get(name);
         }
         throw new LocatorErrors();

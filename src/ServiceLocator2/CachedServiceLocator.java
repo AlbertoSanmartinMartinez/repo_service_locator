@@ -14,44 +14,54 @@ import java.util.Map;
  */
 public class CachedServiceLocator implements ServiceLocator {
 
-    private final Map<String, Object> cnames;
+    private final Map<String, ? super Object> gservice;
 
     public CachedServiceLocator () {
-        this.cnames = new HashMap<>();
+
+        this.gservice = new HashMap<>();
     }
 
-    @Override
-    public void setService(String name, Factory factory) throws LocatorErrors {
 
-        if (cnames.containsKey(name)) { // revisar si lo crea o no antes de la excepcion
+    @Override
+    public <T> void setService(Class<T> name, Factory<T> factory) throws LocatorErrors {
+        if (gservice.containsKey(name)) { // revisar si lo crea o no antes de la excepcion
             throw new LocatorErrors();
         }
         else {
             //this.factory = new Impl1Factory();
-            this.cnames.put(name, factory);
+            this.gservice.put(name.toString(), factory);
         }
     }
 
     @Override
-    public void setConstant(String name, Object object) throws LocatorErrors {
+    public <T> void setConstant(Class<T> name, T object) throws LocatorErrors {
 
-        if (cnames.containsKey(name)) {
+        if (gservice.containsKey(name)) {
             throw new LocatorErrors();
         }
         else {
             //this.factory = new Impl1Factory();
-            this.cnames.put(name, object);
+            this.gservice.put(name.toString(),object );
         }
     }
 
     @Override
-    public Object getObject(String name) throws LocatorErrors {
+    public <T> T getObject(Class<T> name) throws LocatorErrors {
 
-        if (cnames.containsKey(name)) {
-            return cnames.get(name);
+        if (gservice.containsKey(name.toString())) {
+            if(gservice.get(name.toString()) instanceof Factory){
+
+                Factory f= (Factory) gservice.get(name.toString());
+                T ob = (T) f.create(this);
+
+                gservice.put(name.toString(),ob);
+                return ob;
+            }
+            return (T) gservice.get(name.toString());
         }
         throw new LocatorErrors();
     }
+
 
 }
 
