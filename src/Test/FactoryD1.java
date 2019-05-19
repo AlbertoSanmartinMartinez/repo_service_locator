@@ -13,7 +13,7 @@ public class FactoryD1 implements Factory {
             int i = (int) s1.getObject("I");
             return new ImplementationD1(i);
         } catch (ClassCastException ex) {
-            throw new LocatorErrors();
+            throw new LocatorErrors("Dependencies not found for ImplC");
         }
 
     }

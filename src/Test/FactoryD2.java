@@ -11,7 +11,7 @@ public class FactoryD2 implements Factory<InterfaceD> {
             return new ImplementationD1(i);
 
         } catch (ClassCastException ex) {
-            throw new LocatorErrors();
+            throw new LocatorErrors("Dependencies not found for ImplD");
         }
 
     }

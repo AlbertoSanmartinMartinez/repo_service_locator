@@ -26,7 +26,7 @@ public class SimpleServiceLocator implements ServiceLocator {
     public void setService(String name, Factory factory) throws LocatorErrors {
         
         if (names.containsKey(name)) { // revisar si lo crea o no antes de la excepcion
-            throw new LocatorErrors();
+            throw new LocatorErrors("Key had been assigned");
         }
         else {
             //this.factory = new Impl1Factory();
@@ -38,7 +38,7 @@ public class SimpleServiceLocator implements ServiceLocator {
     public void setConstant(String name, Object object) throws LocatorErrors {
         
         if (names.containsKey(name)) {
-            throw new LocatorErrors();
+            throw new LocatorErrors("Key had been assigned");
         }
         else {
             //this.factory = new Impl1Factory();
@@ -59,7 +59,7 @@ public class SimpleServiceLocator implements ServiceLocator {
                 return names.get(name);
 
         }
-        throw new LocatorErrors();
+        throw new LocatorErrors("Wrong Key or Missing Dependencies");
     }
     
 }

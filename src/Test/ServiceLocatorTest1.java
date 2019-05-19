@@ -2,28 +2,32 @@ package Test;
 
 import org.junit.Test;
 import ServiceLocator.*;
-import org.xml.sax.Locator;
 
 import static org.junit.Assert.*;
 
 public class ServiceLocatorTest1 {
 
-    private SimpleServiceLocator service;
-    private CachedServiceLocator cache;
+    //Two types of ServiceLocator for testing them
+    private  SimpleServiceLocator service;
+    private  CachedServiceLocator cache;
 
-    private static Factory fa1=new FactoryA1();
-    private static Factory fb1= new FactoryB1();
-    private static Factory fc1 = new FactoryC1();
-    private static Factory fd1= new FactoryD1();
+    //4 facotries for tests
+    private  Factory fa1=new FactoryA1();
+    private  Factory fb1= new FactoryB1();
+    private  Factory fc1 = new FactoryC1();
+    private  Factory fd1= new FactoryD1();
 
-    private InterfaceC c;
-    private InterfaceB b;
-    private InterfaceD d;
-    private final String s = "Hola";
-    private final int i = 3;
+    //Interfaces needed for implementations in the tests
+    private  InterfaceC c;
+    private  InterfaceB b;
+    private  InterfaceD d;
+
+    //Values needed for implementations in the tests
+    private static final String s = "Hola"; // For saving memory we do it static and final, so we won't modify their value for the tests
+    private static final int i = 3;
 
     @Test(expected = LocatorErrors.class)
-    public void notEnoughtConstantsForCreateFactory() throws LocatorErrors // it must throw the LocatorErrors because we don't have all the dependencies for creat object in FatoryA1
+    public void notEnoughConstantsForCreateFactory() throws LocatorErrors // it must throw the LocatorErrors because we don't have all the dependencies for creat object in FatoryA1
     {
         service = new SimpleServiceLocator();
 
@@ -34,7 +38,7 @@ public class ServiceLocatorTest1 {
     }
 
     @Test(expected = LocatorErrors.class)
-    public void notPossibleToSetWithSameName() throws LocatorErrors // it must throw the LocatorErrors because we don't have all the dependencies for creat object in FatoryA1
+    public void keyAlreadyAssignedTest() throws LocatorErrors // it must throw the LocatorErrors because we don't have all the dependencies for creat object in FatoryA1
     {
         service = new SimpleServiceLocator();
 
@@ -99,7 +103,7 @@ public class ServiceLocatorTest1 {
         Object ob2=cache.getObject("FA2"); //even if both are Factory1 they will not be the same, just the same type
 
         assertNotSame(ob,ob2);
-        assertTrue(ob.getClass()==ob2.getClass()); //TRIEU QUINAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA ES LA CORRECTA PUTOOOOOO ALBERT
+        assertTrue(ob.getClass()==ob2.getClass());
         //assertSame(ob2,cache.getObject("FA2")); //We look if always returns the same object
 
     }

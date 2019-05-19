@@ -28,7 +28,7 @@ public class FactoryA1 implements Factory {
             return new ImplementationA1(b, c);
         }
         catch (ClassCastException e) {
-            throw new LocatorErrors();
+            throw new LocatorErrors("Error");
         }
     }
 }

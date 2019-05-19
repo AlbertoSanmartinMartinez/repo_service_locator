@@ -10,6 +10,11 @@ package ServiceLocator;
  * @author albertosanmartinmartinez
  */
 public class LocatorErrors extends Exception {
+    private String msg;
 
-
+    public LocatorErrors(String msg)
+    {
+        this.msg=msg;
+        System.out.println(msg);
+    }
 }

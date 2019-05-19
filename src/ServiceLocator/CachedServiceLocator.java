@@ -24,7 +24,7 @@ public class CachedServiceLocator implements ServiceLocator {
     public void setService(String name, Factory factory) throws LocatorErrors {
 
         if (cnames.containsKey(name)) { // revisar si lo crea o no antes de la excepcion
-            throw new LocatorErrors();
+            throw new LocatorErrors("Key had been assigned\"");
         }
         else {
             //this.factory = new Impl1Factory();
@@ -36,7 +36,7 @@ public class CachedServiceLocator implements ServiceLocator {
     public void setConstant(String name, Object object) throws LocatorErrors {
 
         if (cnames.containsKey(name)) {
-            throw new LocatorErrors();
+            throw new LocatorErrors("Key had been assigned\"");
         }
         else {
             //this.factory = new Impl1Factory();
@@ -58,7 +58,7 @@ public class CachedServiceLocator implements ServiceLocator {
             }
             return cnames.get(name);
         }
-        throw new LocatorErrors();
+        throw new LocatorErrors("Wrong Key or missing dependencies");
     }
 
 }

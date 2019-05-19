@@ -10,7 +10,7 @@ public class FactoryC2 implements Factory<InterfaceC> {
             return new ImplementationC1(s);
 
         } catch (ClassCastException ex) {
-            throw new LocatorErrors();
+            throw new LocatorErrors("Dependencies not found for ImplC");
         }
 
     }

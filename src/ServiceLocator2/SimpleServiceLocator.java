@@ -6,7 +6,7 @@ public class SimpleServiceLocator implements ServiceLocator {
 
 
 
-    private final  Map<String, ? super Object> gservice;
+    private final  Map<? super Object, ? super Object> gservice;
 
     public SimpleServiceLocator(){
 
@@ -17,11 +17,11 @@ public class SimpleServiceLocator implements ServiceLocator {
     @Override
     public <T> void setService(Class<T> name, Factory<T> factory) throws LocatorErrors {
         if (gservice.containsKey(name)) { // revisar si lo crea o no antes de la excepcion
-            throw new LocatorErrors();
+            throw new LocatorErrors("Key had been assigned");
         }
         else {
             //this.factory = new Impl1Factory();
-            this.gservice.put(name.toString(), factory);
+            this.gservice.put(name, factory);
         }
     }
 
@@ -29,11 +29,11 @@ public class SimpleServiceLocator implements ServiceLocator {
     public <T> void setConstant(Class<T> name, T object) throws LocatorErrors {
 
         if (gservice.containsKey(name)) {
-            throw new LocatorErrors();
+            throw new LocatorErrors("Key had been assigned");
         }
         else {
             //this.factory = new Impl1Factory();
-            this.gservice.put(name.toString(),object );
+            this.gservice.put(name,object);
         }
     }
 
@@ -43,16 +43,16 @@ public class SimpleServiceLocator implements ServiceLocator {
 
         if (gservice.containsKey(name.toString())) {
             if (gservice.get(name.toString()) instanceof Factory) {
-                Factory f = (Factory)gservice.get(name.toString());
+                Factory f = (Factory)gservice.get(name);
                 return (T) f.create(
                         this);
             }
 
 
-            return (T) gservice.get(name.toString());
+            return (T) gservice.get(name);
 
         }
-        throw new LocatorErrors();
+        throw new LocatorErrors("Wrong Key or missing dependencies");
     }
 }
 
