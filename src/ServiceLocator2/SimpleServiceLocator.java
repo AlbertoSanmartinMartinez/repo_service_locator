@@ -41,11 +41,10 @@ public class SimpleServiceLocator implements ServiceLocator {
     public <T> T getObject(Class<T> name) throws LocatorErrors {
     //    return (T) gservice.get(name);
 
-        if (gservice.containsKey(name.toString())) {
-            if (gservice.get(name.toString()) instanceof Factory) {
-                Factory f = (Factory)gservice.get(name);
-                return (T) f.create(
-                        this);
+        if (gservice.containsKey(name)) {
+            if (gservice.get(name) instanceof Factory) {
+                Factory f = (Factory) gservice.get(name);
+                return (T) f.create(this);
             }
 
 

@@ -54,7 +54,7 @@ public class ServiceLocatorTest1 {
         service.setService("FA",fa1);
         service.setService("FB",fb1);
         service.setService("FC",fc1);
-        service.setService("FD",fd1);
+        service.setConstant("FD",fd1);
 
         service.setConstant("B",b);
         service.setConstant("C",c);

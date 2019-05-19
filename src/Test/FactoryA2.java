@@ -8,14 +8,15 @@ public class FactoryA2 implements Factory<InterfaceA> {
     //private ServiceLocator serviceLocator;
 
     @Override
-    public ImplementationA1 create(ServiceLocator s1) throws LocatorErrors {
+    public InterfaceA create(ServiceLocator s1) throws LocatorErrors {
 
         try {
             InterfaceB b = s1.getObject(InterfaceB.class);
-            InterfaceC c = (InterfaceC) s1.getObject(InterfaceC.class);
+            InterfaceC c = s1.getObject(InterfaceC.class);
 
             return new ImplementationA1(b, c);
-        } catch (ClassCastException e) {
+        }
+        catch (ClassCastException e) {
             throw new LocatorErrors("Dependencies not found for ImplA");
         }
 
