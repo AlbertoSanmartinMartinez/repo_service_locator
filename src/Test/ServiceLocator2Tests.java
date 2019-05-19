@@ -2,7 +2,7 @@ package Test;
 import ServiceLocator2.*;
 import org.junit.Test;
 
-import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.*;
 
 public class ServiceLocator2Tests {
     //Two types of Generic ServiceLocator for testing them
@@ -54,20 +54,21 @@ public class ServiceLocator2Tests {
         gservice.setConstant(int.class,i);
         gservice.setConstant(String.class,s);
 
-        Object t1 = gservice.getObject(fa2.getClass());
-        Object t2 = gservice.getObject(fb2.getClass());
-        Object t3 = gservice.getObject(fc2.getClass());
-        Object t4 = gservice.getObject(fd2.getClass());
-
-        assertTrue(t1 instanceof ImplementationA1);
-        assertTrue(t2 instanceof ImplementationB1);
-        assertTrue(t3 instanceof ImplementationC1);
-        assertTrue(t4 instanceof ImplementationD1);
+        assertTrue(gservice.getObject(fa2.getClass()) instanceof ImplementationA1);
+        assertTrue(gservice.getObject(fb2.getClass()) instanceof ImplementationB1);
+        assertTrue(gservice.getObject(fc2.getClass()) instanceof ImplementationC1);
+        assertTrue(gservice.getObject(fd2.getClass()) instanceof ImplementationD1);
     }
 
+    @Test
     public void cachedServiceLocatorTest() throws LocatorErrors
     {
-        
+        gcache=new CachedServiceLocator();
+
+        gcache.setService(fd2.getClass(),fd2);
+        gcache.setConstant(int.class,i);
+        Object ob=gcache.getObject(fd2.getClass());
+        assertSame(ob,gcache.getObject(fd2.getClass()));
     }
 
 }

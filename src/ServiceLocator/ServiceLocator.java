@@ -7,7 +7,7 @@ package ServiceLocator;
 
 /**
  *
- * @author albertosanmartinmartinez
+ *
  */
 public interface ServiceLocator {
     

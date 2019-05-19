@@ -12,19 +12,20 @@ public class ServiceLocatorTest1 {
     private  CachedServiceLocator cache;
 
     //4 facotries for tests
-    private  Factory fa1=new FactoryA1();
-    private  Factory fb1= new FactoryB1();
-    private  Factory fc1 = new FactoryC1();
-    private  Factory fd1= new FactoryD1();
+    private final Factory fa1=new FactoryA1();
+    private final Factory fb1= new FactoryB1();
+    private final Factory fc1 = new FactoryC1();
+    private final Factory fd1= new FactoryD1();
 
     //Interfaces needed for implementations in the tests
-    private  InterfaceC c;
-    private  InterfaceB b;
-    private  InterfaceD d;
+    private InterfaceC c;
+    private InterfaceB b;
+    private InterfaceD d;
 
     //Values needed for implementations in the tests
-    private static final String s = "Hola"; // For saving memory we do it static and final, so we won't modify their value for the tests
-    private static final int i = 3;
+    private final String s = "Hola"; // For saving memory we do it static and final, so we won't modify their value for the tests
+    private final int i = 3;
+
 
     @Test(expected = LocatorErrors.class)
     public void notEnoughConstantsForCreateFactory() throws LocatorErrors // it must throw the LocatorErrors because we don't have all the dependencies for creat object in FatoryA1

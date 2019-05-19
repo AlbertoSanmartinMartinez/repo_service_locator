@@ -10,7 +10,8 @@ import java.util.Map;
 
 /**
  *
- * @author albertosanmartinmartinez
+ *
+ *
  */
 public class CachedServiceLocator implements ServiceLocator {
 

@@ -10,7 +10,7 @@ import java.util.Map;
 
 /**
  *
- * @author albertosanmartinmartinez
+ *
  */
 
 public class SimpleServiceLocator implements ServiceLocator {
