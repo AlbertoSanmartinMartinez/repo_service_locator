@@ -39,6 +39,21 @@ public class SimpleServiceLocator implements ServiceLocator {
 
     @Override
     public <T> T getObject(Class<T> name) throws LocatorErrors {
-        return (T) gservice.get(name);
+    //    return (T) gservice.get(name);
+
+        if (gservice.containsKey(name.toString())) {
+            if (gservice.get(name.toString()) instanceof Factory) {
+                Factory f = (Factory)gservice.get(name.toString());
+                return (T) f.create(
+                        this);
+            }
+
+
+            return (T) gservice.get(name.toString());
+
+        }
+        throw new LocatorErrors();
     }
 }
+
+

@@ -2,6 +2,8 @@ package Test;
 
 import org.junit.Test;
 import ServiceLocator.*;
+import org.xml.sax.Locator;
+
 import static org.junit.Assert.*;
 
 public class ServiceLocatorTest1 {
@@ -17,8 +19,8 @@ public class ServiceLocatorTest1 {
     private InterfaceC c;
     private InterfaceB b;
     private InterfaceD d;
-    private String s = "Hola";
-    private int i = 3;
+    private final String s = "Hola";
+    private final int i = 3;
 
     @Test(expected = LocatorErrors.class)
     public void notEnoughtConstantsForCreateFactory() throws LocatorErrors // it must throw the LocatorErrors because we don't have all the dependencies for creat object in FatoryA1
@@ -30,6 +32,16 @@ public class ServiceLocatorTest1 {
         service.getObject("FA"); //Constant with name "C" is missing so it will not works
 
     }
+
+    @Test(expected = LocatorErrors.class)
+    public void notPossibleToSetWithSameName() throws LocatorErrors // it must throw the LocatorErrors because we don't have all the dependencies for creat object in FatoryA1
+    {
+        service = new SimpleServiceLocator();
+
+        service.setService("FA",fa1);
+        service.setConstant("FA",b);
+
+    }
     @Test
     public void checkSimpleServiceLocatorMethods() throws LocatorErrors
     {
@@ -39,6 +51,7 @@ public class ServiceLocatorTest1 {
         service.setService("FB",fb1);
         service.setService("FC",fc1);
         service.setService("FD",fd1);
+
         service.setConstant("B",b);
         service.setConstant("C",c);
         service.setConstant("D",d);
@@ -70,7 +83,7 @@ public class ServiceLocatorTest1 {
 
 
     @Test
-    public void notSameTypeFactoryNotSameObject() throws LocatorErrors // it must throw the LocatorErrors because we don't have all the dependencies for creat object in FatoryA1
+    public void sameTypeFactoryNotSameObject() throws LocatorErrors // it must throw the LocatorErrors because we don't have all the dependencies for creat object in FatoryA1
     {
         cache = new CachedServiceLocator();
 
@@ -87,9 +100,11 @@ public class ServiceLocatorTest1 {
 
         assertNotSame(ob,ob2);
         assertTrue(ob.getClass()==ob2.getClass()); //TRIEU QUINAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA ES LA CORRECTA PUTOOOOOO ALBERT
-        assertSame(ob.getClass(),ob2.getClass());
         //assertSame(ob2,cache.getObject("FA2")); //We look if always returns the same object
 
     }
+
+
+
 
 }

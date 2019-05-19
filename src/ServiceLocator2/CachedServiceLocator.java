@@ -24,7 +24,7 @@ public class CachedServiceLocator implements ServiceLocator {
 
     @Override
     public <T> void setService(Class<T> name, Factory<T> factory) throws LocatorErrors {
-        if (gservice.containsKey(name)) { // revisar si lo crea o no antes de la excepcion
+        if (gservice.containsKey(name.toString())) { // revisar si lo crea o no antes de la excepcion
             throw new LocatorErrors();
         }
         else {
@@ -36,7 +36,7 @@ public class CachedServiceLocator implements ServiceLocator {
     @Override
     public <T> void setConstant(Class<T> name, T object) throws LocatorErrors {
 
-        if (gservice.containsKey(name)) {
+        if (gservice.containsKey(name.toString())) {
             throw new LocatorErrors();
         }
         else {
